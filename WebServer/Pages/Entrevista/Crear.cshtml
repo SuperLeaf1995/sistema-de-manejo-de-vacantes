@@ -1,0 +1,51 @@
+@page
+@model RazorPagesWebServer.Pages.Entrevista.Crear.BaseModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<partial name="Header" />
+
+<h1>Crear entrevista</h1>
+<form method="post">
+    <input hidden asp-for="Entrevista.Id" value="0" />
+
+    <div>
+    <label for="entrevista-vacante">Vacante:</label>
+    <select id="entrevista-vacante" asp-for="Entrevista.VacanteId">
+        @foreach (var vacante in Model.VacanteLista)
+        {
+            <option value="@vacante.Id">@vacante.Id - @vacante.Area</option>
+        }
+    </select>
+    <span class="error" asp-validation-for="Entrevista.VacanteId"></span>
+    <br></div>
+
+    <div>
+    <label for="entrevista-prospecto">Prospecto:</label>
+    <select id="entrevista-prospecto" asp-for="Entrevista.ProspectoId">
+        @foreach (var prospecto in Model.ProspectoLista)
+        {
+            <option value="@prospecto.Id">@prospecto.Id - @prospecto.Nombre</option>
+        }
+    </select>
+    <span class="error" asp-validation-for="Entrevista.ProspectoId"></span>
+    <br></div>
+
+    <div>
+    <label for="entrevista-fecha">Fecha de Entrevista:</label>
+    <input id="entrevista-fecha" asp-for="Entrevista.Fecha" value="@Model.currentDateTime" />
+    <span class="error" asp-validation-for="Entrevista.Fecha"></span>
+    <br></div>
+
+    <div>
+    <label for="entrevista-notas">Notas:</label>
+    <input id="entrevista-notas" asp-for="Entrevista.Notas" />
+    <span class="error" asp-validation-for="Entrevista.Notas"></span>
+    <br></div>
+
+    <div>
+    <label for="entrevista-reclutado">Reclutado:</label>
+    <input id="entrevista-reclutado" asp-for="Entrevista.Reclutado" />
+    <span class="error" asp-validation-for="Entrevista.Reclutado"></span>
+    <br></div>
+
+    <input type="submit" />
+</form>

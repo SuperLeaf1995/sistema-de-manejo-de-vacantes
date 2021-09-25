@@ -1,0 +1,37 @@
+@page
+@model RazorPagesWebServer.Pages.Prospecto.Index.BaseModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<partial name="Header" />
+
+<h1>Indice de prospectos</h1>
+<ul>
+    <li><a href="/Prospecto/Crear">Crear nuevo prospecto</a></li>
+</ul>
+
+<form method="post">
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Fecha</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var prospecto in Model.ProspectoLista)
+        {
+            <tr>
+                <td>@prospecto.Id</td>
+                <td>@prospecto.Nombre</td>
+                <td>@prospecto.Correo</td>
+                <td>@prospecto.Fecha</td>
+                <td><button type="submit" asp-page-handler="delete" asp-route-id="@prospecto.Id">Borrar</button></td>
+                <td><a href="/Prospecto/Editar?Prospecto.Id=@prospecto.Id">Editar</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+</form>

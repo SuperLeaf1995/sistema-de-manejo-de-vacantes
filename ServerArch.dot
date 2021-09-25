@@ -1,0 +1,28 @@
+digraph G {
+    crear [label="Crear"];
+    act [label="Actualizar"];
+    borrar [label="Borrar"];
+    valid [label="Validacion"];
+    db [label="Base de datos"];
+    
+    subgraph cluster_0 {
+        label="Backend";
+        style=filled;
+        color=lightgrey;
+        
+        valid -> db;
+    }
+    
+    subgraph cluster_1 {
+        label="Interfaz CRUD/Frontend";
+        style=filled;
+        color=lightgrey;
+        
+        crear -> valid;
+        borrar -> valid;
+        act -> valid;
+        db -> list;
+    }
+    
+    list [label="Listado de datos"];
+}
